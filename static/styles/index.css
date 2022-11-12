@@ -1,0 +1,66 @@
+:root {
+    --primary-bg-color: #415058;
+    --primary-fn-color: #fffe;
+
+    --secondary-bg-color: #000c14ef;
+    --secondary-fn-color: #fffa;
+}
+
+body { 
+    background-image: url(https://www.wallpapertip.com/wmimgs/15-152580_coding-background.jpg);
+    background-position: center;
+    background-size: contain;    
+}
+
+
+article {
+    margin: 2vh 0;
+}
+
+#about {
+    background: var(--secondary-bg-color);
+    color: var(--secondary-fn-color);
+
+    padding: 15px 0;
+}
+
+    #about img {
+        max-height: 250px;
+        min-width: 120px;
+    }
+    #about figcaption {
+        text-decoration: underline;
+    }
+    #about-text {
+        max-width: 850px;
+    }
+    #about-text h3 {
+        text-shadow: 0 0 20px whitesmoke;
+    }
+    
+
+#experience {
+    background: var(--primary-bg-color);
+    color: var(--primary-fn-color);
+}
+    #experience .card {
+        margin: 6px 4px;
+    }
+
+
+#education {
+    background: var(--secondary-bg-color);
+    color: var(--secondary-fn-color);
+}
+
+
+#skills  {
+    background: var(--primary-bg-color);
+    color: var(--primary-fn-color);
+}
+
+
+#proyects {
+    background: var(--secondary-bg-color);
+    color: var(--secondary-fn-color);
+}
