@@ -9,7 +9,7 @@
 body { 
     background-image: url(https://www.wallpapertip.com/wmimgs/15-152580_coding-background.jpg);
     background-position: center;
-    background-size: contain;    
+    background-size: contain;  
 }
 
 
@@ -30,6 +30,7 @@ article {
     }
     #about figcaption {
         text-decoration: underline;
+        font-style: italic;
     }
     #about-text {
         max-width: 850px;
@@ -42,9 +43,23 @@ article {
 #experience {
     background: var(--primary-bg-color);
     color: var(--primary-fn-color);
+
+    padding: 10px 6px;
 }
+    #experience h3 {
+        display: inline-block;
+
+        font-size: 1.7em;
+        color: var(--primary-bg-color);
+        text-shadow: 0 0 3px var(--primary-fn-color);
+    }
+
     #experience .card {
         margin: 6px 4px;
+        outline: 1px solid white;
+    }
+    #experience .card h5 {
+        font-weight: bolder;
     }
 
 
@@ -52,15 +67,41 @@ article {
     background: var(--secondary-bg-color);
     color: var(--secondary-fn-color);
 }
+    #education h3 {
+        text-decoration: underline;
+    }
+    #education ol {
+        padding: 5% 10%;
+    }
 
 
 #skills  {
     background: var(--primary-bg-color);
     color: var(--primary-fn-color);
+
+    padding: 1% 2%;
 }
+
+    #skills > div {
+        padding: 4% 0;
+    }
+    #skills .progress {
+        color: #000000c4;
+        margin: 6px 0;
+        height: min-content;
+    }
 
 
 #proyects {
     background: var(--secondary-bg-color);
     color: var(--secondary-fn-color);
+
+    padding-bottom: 40px;
 }
+
+    #proyects h3 {
+        padding: 10px 20px;
+    }
+    #proyects .carousel-caption {
+        text-shadow: 0 0 8px black;
+    }
