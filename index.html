@@ -24,15 +24,15 @@
     <div id="root">
         <nav class="nav-bar bg-dark">
             <div class="container-fluid d-flex justify-content-between align-items-sm-center">
-                <a href="#" class="btn btn-outline-success">
+                <button id="logIn" class="btn btn-outline-success">
                     <span>Log in</span>
                     <i class="fas fa-sign-in-alt"></i>
-                </a>
+                </button>
 
-                <a href="#" class="btn btn-outline-secondary">
+                <button id="logOut" class="btn btn-outline-secondary">
                     <span>Log out</span>
                     <i class="fas fa-sign-out-alt"></i>
-                </a>
+                </button>
 
                 <a class="link-info" target="_blank" href="#">
                     <i class="fab fa-instagram"></i>
@@ -48,9 +48,33 @@
                 </a>
             </div>
         </nav>
+
+        <div style="display: none;" id="hiddenForm" class="fixed-top container-md">
+            <form class="bg-light" action="" method="POST">
+                <div class="mb-3 text-end">
+                    <button id="closeForm" type="button" class="btn-close"></button>
+                </div>
+                <div class="mb-3 text-center">
+                    <h2 class="h2"> Logg in </h2>
+                    <span> Con fin de mostrar solo el front-end, al cerrar esta ventana usted se "loggeara" </span>
+                </div>
+                <div class="mb-3"> 
+                    <label for="inputUsername" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="inputUsuario" name="usuario" required />
+                </div>
+                <div class="mb-3"> 
+                    <label for="inputPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="inputPassword" name="password" required />
+                </div>
+                <div class="mb-3 text-center d-grid"> 
+                    <button type="submit" class="btn btn-success">Entrar</button>   
+                </div>
+            </form>
+        </div>
+
         <section>
             <article id="about">
-                <div class="container-fluid">
+                <div class="container-fluid" id="about-info">
                     <div class="row">
                         <div class="col-3">
                             <figure class="text-center">
@@ -58,12 +82,31 @@
                                 <figcaption>Franco Angeletti</figcaption>
                             </figure>
                         </div>
-                        <div class="col" id="about-text">
+                        <div class="col-8" id="about-text">
                             <h3 class="h3">Acerca de mi</h3>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam facere sit a. Veritatis, laborum exercitationem in id odio aspernatur ab quisquam sequi eius quo rem totam ducimus maxime, doloribus cum?
                                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus perferendis tempora mollitia. Fugiat, ut dolor deserunt repellendus vel nam aliquid reprehenderit mollitia at officia nemo inventore cumque laudantium architecto corrupti.
                             </p>
+                        </div>
+                        <div class="col-1 d-flex"> 
+                            <button type="button" class="btn btn-success editButton" data-meant="about"><i class="fas fa-edit"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-fluid" id="editAbout" style="display: none;">
+                    <div class="row">
+                        <div class="col-3">
+                            <textarea id="imageSourceEdit" placeholder="IMAGE URL" style="height: 200px;width: 100%; resize: none;">https://pps.whatsapp.net/v/t61.24694-24/298637429_654478402741198_712912875000598158_n.jpg?ccb=11-4&oh=01_AdSw2kKTPyAeKts-x_XJPTLqsx97c47pfol0UpkdCEVU6w&oe=637804F3</textarea>
+                            <textarea id="portfolioNameEdit" placeholder="NOMBRE" style="height: 3rem;width: 100%; resize: none;">Franco Angeletti</textarea>
+                        </div>
+                        <div class="col-7">
+                            <textarea id="presentacionEdit" placeholder="PRESENTACIÓN PERSONAL" style="height: 100%;width: 100%; resize: none;"></textarea>
+                        </div>
+                        <div class="col-2 d-flex justify-content-evenly flex-column">
+                            <button id="aboutClose" type="button" class="btn btn-warning" style="width: 100%;">Close</button>
+                            <button id="aboutSave" type="button" class="btn btn-primary" style="width: 100%;">Save</button>
                         </div>
                     </div>
                 </div>

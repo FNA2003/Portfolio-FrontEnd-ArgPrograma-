@@ -12,6 +12,18 @@ body {
     background-size: contain;  
 }
 
+#hiddenForm {
+    top: 40px !important;
+}
+    #hiddenForm form{
+        padding: 10px 5px;
+        border-radius: 10px;
+    }
+
+
+.editButton {
+    display: none;
+}
 
 article {
     margin: 2vh 0;
@@ -100,8 +112,12 @@ article {
 }
 
     #proyects h3 {
-        padding: 10px 20px;
+        padding: 1% 10%;
     }
     #proyects .carousel-caption {
         text-shadow: 0 0 8px black;
+    }
+    #proyects img {
+        max-height: 100vh;
+        object-fit: contain;
     }
