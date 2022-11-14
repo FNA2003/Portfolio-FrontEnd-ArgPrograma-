@@ -1,5 +1,5 @@
 :root {
-    --primary-bg-color: #415058;
+    --primary-bg-color: #2f383d;
     --primary-fn-color: #fffe;
 
     --secondary-bg-color: #000c14ef;
@@ -21,7 +21,7 @@ body {
     }
 
 
-.editButton {
+.editButton, .removeButton {
     display: none;
 }
 
