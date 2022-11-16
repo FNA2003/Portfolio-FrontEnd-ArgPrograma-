@@ -4,6 +4,8 @@
 
    Al modificar la página solo lo hará en el front-end
 
+   TODO: Tal vez devería dividir el archivo en varios
+
 */
 function main() {
     // Botones y el estado de los mismos para el logeo
@@ -40,6 +42,9 @@ function showForm(buttonIn, buttonOut, form) {
                 case "experiencia":
                     button.addEventListener("mouseup", function () { editExperience(button); });
                     break;
+                case "educacion":
+                    button.addEventListener("mouseup", function () { editEducation(button); });
+                    break;
                 default:
                     break;
             }
@@ -47,17 +52,22 @@ function showForm(buttonIn, buttonOut, form) {
     });
     document.querySelectorAll(".removeButton").forEach(function (button) {
         button.setAttribute("style", "display: block;");
-        button.addEventListener("mouseup", function () {
-            if (button instanceof HTMLElement) {
-                switch (button.dataset.meant) {
-                    case "experiencia":
+        if (button instanceof HTMLElement) {
+            switch (button.dataset.meant) {
+                case "experiencia":
+                    button.addEventListener("mouseup", function () {
                         button.parentElement.parentElement.parentElement.remove();
-                        break;
-                    default:
-                        break;
-                }
+                    });
+                    break;
+                case "educacion":
+                    button.addEventListener("mouseup", function () {
+                        button.parentElement.parentElement.parentElement.remove();
+                    });
+                    break;
+                default:
+                    break;
             }
-        });
+        }
     });
 }
 function closeForm(form) {
@@ -101,15 +111,97 @@ function editAbout(origin) {
     });
 }
 function editExperience(origin) {
-    var FATHER = origin.parentElement.parentElement.parentElement.parentElement;
-    var card = origin.parentElement.parentElement.parentElement;
-    card.setAttribute("style", "display:none");
-    /* TODO: BIG TODO, WE NEED TO TRANSLATE THE BELLOW CODE
-    TO DIFERENTS ELEMENTS SO WE CAN ADD EVENT LISTENERS AN SO ON  */
-    var edit = document.createElement("div");
-    edit.setAttribute("style", "position: absolute; top: ".concat(window.screenY, "; left: 40%;"));
-    edit.innerHTML = "\n    <div class=\"card\" style=\"max-width:35rem; width: 15%; min-width: 18rem\">\n        <textarea style=\"resize: none; height:3rem;\" placeholder=\"URL DE LA IM\u00C1GEN DE LA COMPAN\u00CDA\">".concat(card.children[0].src, "</textarea>\n        <div class=\"card-body\">\n            <textarea style=\"resize: none; height:3rem;\" placeholder=\"NOMBRE DE LA COMPAN\u00CDA\">").concat(card.children[1].children[0].innerHTML, "</textarea>\n            <textarea style=\"resize: none; height:5rem;\" placeholder=\"DESCRIPCI\u00D3N DEL CARGO EN LA COMPAN\u00CDA\">").concat(card.children[1].children[1].innerHTML, "</textarea>\n        </div>\n        <ul class=\"list-group list-group-flush text-center\">\n            <li class=\"list-group-item\"><textarea style=\"resize: none; height:2rem;\" placeholder=\"CARGO EN LA COMPAN\u00CDA\">").concat(origin.parentElement.parentElement.children[0].innerHTML, "</textarea></li>\n            <li class=\"list-group-item\"><textarea style=\"resize: none; height:2rem;\" placeholder=\"TIEMPO EN LA COMPAN\u00CDA\">").concat(origin.parentElement.parentElement.children[1].innerHTML, "</textarea></li>\n            <li class=\"list-group-item\"><a href=\"#\"><textarea style=\"resize: none; height:3rem;\" placeholder=\"URL QUE VALIDE LA EXPERIENCIA\">").concat(origin.parentElement.parentElement.children[2].children[0].src, "</textarea></a></li>\n            <li class=\"list-group-item d-flex justify-content-evenly\">\n                <button class=\"btn btn-warning\">Close</button>\n                <button class=\"btn btn-primary\">Save</button>\n            </li>\n        </ul>\n    </div>");
-    FATHER.appendChild(edit);
+    // Muestra todas las cartas ocultas(Experiencia)
+    document.querySelectorAll(".card").forEach(function (card) {
+        card.setAttribute("style", "display: block;");
+    });
+    // Origin es la carta a editar, editor es la carta con los textAreas
+    origin = origin.parentElement.parentElement.parentElement;
+    var editor = document.getElementById("cardEditor");
+    // (EXPERIMENTAL) 'yPosition' es la posición original de la carta a editar
+    var yPosition = origin.getBoundingClientRect().top + window.scrollY;
+    // Todas los textAreas del editor
+    var editAreas = [
+        editor.querySelector("#cardEditor-image"),
+        editor.querySelector("#cardEditor-name"),
+        editor.querySelector("#cardEditor-desc"),
+        editor.querySelector("#cardEditor-charge"),
+        editor.querySelector("#cardEditor-time"),
+        editor.querySelector("#cardEditor-url")
+    ];
+    // Toda la información MODIFICABLE de la carta original
+    var originAreas = [
+        origin.querySelector("img"),
+        origin.querySelector("h5"),
+        origin.querySelector("p"),
+        origin.querySelector("ul > li:first-child"),
+        origin.querySelector("ul > li:nth-child(2)"),
+        origin.querySelector("a")
+    ];
+    origin.setAttribute("style", "display: none;");
+    editor.setAttribute("style", "bottom: ".concat(yPosition, "px;"));
+    // Y, actualizamos los valores del editor con los a valores a editar
+    editAreas[0].value = originAreas[0].src;
+    editAreas[1].value = originAreas[1].innerHTML;
+    editAreas[2].value = originAreas[2].innerHTML;
+    editAreas[3].value = originAreas[3].innerHTML;
+    editAreas[4].value = originAreas[4].innerHTML;
+    editAreas[5].value = originAreas[5].href;
+    /* Botón de cerrar */
+    editor.querySelector("button:first-child").addEventListener("mouseup", function () {
+        origin.setAttribute("style", "display: block;");
+        editor.setAttribute("style", "display: none;");
+    });
+    /* Boton de salvar cambios (Nuevamente, Front-End) */
+    editor.querySelector("button:last-child").addEventListener("mouseup", function () {
+        origin.setAttribute("style", "display: block;");
+        editor.setAttribute("style", "display: none;");
+        originAreas[0].src = editAreas[0].value;
+        originAreas[1].innerHTML = editAreas[1].value;
+        originAreas[2].innerHTML = editAreas[2].value;
+        originAreas[3].innerHTML = editAreas[3].value;
+        originAreas[4].innerHTML = editAreas[4].value;
+        originAreas[5].href = editAreas[5].value;
+    });
+}
+function editEducation(origin) {
+    // editor es el input que permite modificar un valor, textAreas son los varios inputs
+    var editor = document.querySelector("#educationEditor");
+    var textAreas = [
+        editor.querySelector("textarea:first-child"),
+        editor.querySelector("textarea:nth-child(2)"),
+        editor.querySelector("textarea:nth-child(3)")
+    ];
+    // origin es el elemento a modificar, originElements es la colección de elementos MODIFICABLES
+    origin = origin.parentElement.parentElement.parentElement;
+    var originElements = [
+        origin.querySelector("h4"),
+        origin.querySelector("span"),
+        origin.querySelector("a")
+    ];
+    // Mostramos todos los títulos (si es que el usuario presiona editar al estar editando)
+    document.querySelectorAll("#education li").forEach(function (list) {
+        list.setAttribute("style", "display: block!important;");
+    });
+    // Y, al original lo escondemos
+    origin.setAttribute("style", "display: none!important;");
+    // Modificamos los valores por defecto de los inputs por los MODIFICABLES
+    textAreas[0].value = originElements[0].innerHTML;
+    textAreas[1].value = originElements[1].innerHTML;
+    textAreas[2].value = originElements[2].href;
+    /* CLOSE BUTTON */
+    editor.querySelector("button:first-child").addEventListener("mouseup", function () {
+        origin.setAttribute("style", "display: block!important;");
+        editor.setAttribute("style", "display: none!important;");
+    });
+    /* SAVE BUTTON (En el Front-End) */
+    editor.querySelector("button:last-child").addEventListener("mouseup", function () {
+        origin.setAttribute("style", "display: block!important;");
+        editor.setAttribute("style", "display: none!important;");
+        originElements[0].innerHTML = textAreas[0].value;
+        originElements[1].innerHTML = textAreas[1].value;
+        originElements[2].href = textAreas[2].value;
+    });
 }
 document.addEventListener("DOMContentLoaded", function () {
     main();

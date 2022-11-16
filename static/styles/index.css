@@ -69,6 +69,11 @@ article {
     #experience .card {
         margin: 6px 4px;
         outline: 1px solid white;
+        
+        max-width:35rem; 
+        width: 15%; 
+        min-width: 18rem;
+        height: fit-content;
     }
     #experience .card h5 {
         font-weight: bolder;

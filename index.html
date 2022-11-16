@@ -117,7 +117,7 @@
                 <div class="container-fluid">
                     <h3 class="h3">Experiencia</h3>
                     <div class="d-flex flex-wrap justify-content-evenly">
-                        <div class="card text-bg-dark" style="max-width:35rem; width: 15%; min-width: 18rem">
+                        <div class="card text-bg-dark">
                             <img class="card-img-top" alt="company-logo" src="https://www.logo.wine/a/logo/Tesla%2C_Inc./Tesla%2C_Inc.-Logomark%26Wordmark2-Dark-Background-Logo.wine.svg" />
                             <div class="card-body">
                                 <h5 class="card-title h5">Tesla</h5>
@@ -133,7 +133,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="card text-bg-dark" style="max-width:35rem; width: 15%; min-width: 18rem">
+                        <div class="card text-bg-dark">
                             <img class="card-img-top" alt="company-logo" src="https://www.logo.wine/a/logo/Tesla%2C_Inc./Tesla%2C_Inc.-Logomark%26Wordmark2-Dark-Background-Logo.wine.svg" />
                             <div class="card-body">
                                 <h5 class="card-title h5">Tesla</h5>
@@ -149,7 +149,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="card text-bg-dark" style="max-width:35rem; width: 15%; min-width: 18rem">
+                        <div class="card text-bg-dark">
                             <img class="card-img-top" alt="company-logo" src="https://www.logo.wine/a/logo/Tesla%2C_Inc./Tesla%2C_Inc.-Logomark%26Wordmark2-Dark-Background-Logo.wine.svg" />
                             <div class="card-body">
                                 <h5 class="card-title h5">Tesla</h5>
@@ -162,6 +162,22 @@
                                 <li class="list-group-item d-flex justify-content-evenly">
                                     <button data-meant="experiencia" class="editButton btn btn-success"><i class="fas fa-edit"></i></button>
                                     <button data-meant="experiencia" class="removeButton btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card" id="cardEditor" style="display: none; position: absolute; margin: 0 auto;">
+                            <textarea id="cardEditor-image" style="margin: 0 auto;resize: none; height:3rem;" placeholder="URL DE LA IMÁGEN DE LA COMPANÍA"></textarea>
+                            <div class="card-body">
+                                <textarea id="cardEditor-name" style="resize: none; height:3rem;" placeholder="NOMBRE DE LA COMPANÍA"></textarea>
+                                <textarea id="cardEditor-desc" style="resize: none; height:5rem;" placeholder="DESCRIPCIÓN DEL CARGO EN LA COMPANÍA"></textarea>
+                            </div>
+                            <ul class="list-group list-group-flush text-center">
+                                <li class="list-group-item"><textarea id="cardEditor-charge" style="resize: none; height:2rem;" placeholder="CARGO EN LA COMPANÍA"></textarea></li>
+                                <li class="list-group-item"><textarea id="cardEditor-time" style="resize: none; height:2rem;" placeholder="TIEMPO EN LA COMPANÍA"></textarea></li>
+                                <li class="list-group-item"><textarea id="cardEditor-url" style="resize: none; height:3rem;" placeholder="URL QUE VALIDE LA EXPERIENCIA"></textarea></li>
+                                <li class="list-group-item d-flex justify-content-evenly">
+                                    <button class="btn btn-warning">Close</button>
+                                    <button class="btn btn-primary">Save</button>
                                 </li>
                             </ul>
                         </div>
@@ -176,15 +192,34 @@
                     <li class="list-group-item d-flex justify-content-between align-items-start">
                       <div class="ms-2 me-auto">
                         <h4 class="h4">Secundaria Técnica N°4</h4>
-                        Título: "Electro-mecánico" (2015-2022)<br>
+                        <span>Título: "Electro-mecánico" (2015-2022)</span><br>
                         <a href="#">Comprobante del título</a>
+                        <div class="d-flex justify-content-evenly">
+                            <button data-meant="educacion" class="editButton btn btn-success" style="display:none;"><i class="fas fa-edit" aria-hidden="true"></i></button>
+                            <button data-meant="educacion" class="removeButton btn btn-danger" style="display: none;"><i class="fas fa-trash-alt" aria-hidden="true"></i></button>
+                        </div>
                       </div>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-start">
                         <div class="ms-2 me-auto">
                           <h4 class="h4">Secundaria Técnica N°4</h4>
-                          Título: "Electro-mecánico" (2015-2022)<br>
+                          <span>Título: "Electro-mecánico" (2015-2022)</span><br>
                           <a href="#">Comprobante del título</a>
+                          <div class="d-flex justify-content-evenly">
+                            <button data-meant="educacion" class="editButton btn btn-success" style="display:none;"><i class="fas fa-edit" aria-hidden="true"></i></button>
+                            <button data-meant="educacion" class="removeButton btn btn-danger" style="display: none;"><i class="fas fa-trash-alt" aria-hidden="true"></i></button>
+                          </div>
+                        </div>
+                    </li>
+                    <li id="educationEditor" style="display: none!important;" class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <textarea placeholder="Institución que le dió el título" class="d-block" style="resize:none; width: 100%; height: 3rem; margin: 4px 0;"></textarea>
+                            <textarea placeholder="Nombre del título y duración de la cursada" class="d-block" style="resize:none; width: 100%; height: 3rem; margin: 4px 0;"></textarea>
+                            <textarea placeholder="Url del comprobante del título" class="d-block" style="resize:none; width: 100%; height: 3rem; margin: 4px 0;"></textarea>
+                            <div class="d-flex justify-content-evenly">
+                                <button class="btn btn-warning">Close</button>
+                                <button class="btn btn-primary">Save</button>
+                            </div>
                         </div>
                     </li>
                 </ol>
