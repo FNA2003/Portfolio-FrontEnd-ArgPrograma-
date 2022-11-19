@@ -8,12 +8,11 @@
 
 */
 
-
 function main():number {
     // Botones y el estado de los mismos para el logeo
     let logIn:Element = document.querySelector("#logIn");
     let logOut:Element = document.querySelector("#logOut");
-    
+
     document.querySelector("#logOut").addEventListener("mouseup", () => { location.reload(); });
 
     // El elemento que permite logearse
@@ -54,6 +53,9 @@ function showForm(buttonIn:Element, buttonOut:Element, form:Element):void {
                     break;
                 case "educacion":
                     button.addEventListener("mouseup", () => {editEducation(button)});
+                    break;
+                case "habilidades":
+                    button.addEventListener("mouseup", () => {editSkills(button);});
                     break;
                 default:
                     break;
@@ -240,6 +242,57 @@ function editEducation(origin:Element):void {
         originElements[0].innerHTML = textAreas[0].value;
         originElements[1].innerHTML = textAreas[1].value;
         originElements[2].href = textAreas[2].value;
+    });
+}
+
+function editSkills(origin:Element):void {
+    // Tabla donde vamos a encontrar la plantilla editable de las skills
+    const editor:Element = document.querySelector("#skillsEditor");
+    // Array donde se encuentran los datos base
+    const data:NodeList = document.querySelectorAll("#skillsData .progress");
+    // Cuerpo de la tabla (donde vamos a agregar las filas de edición)
+    const tableBody:Element = document.querySelector("#skillsEditor tbody");
+    const fragment:DocumentFragment = document.createDocumentFragment();
+
+    // Escondemos el botón de editar y, mostramos el editor
+    editor.setAttribute("style", "display: block;");
+    origin.setAttribute("style", "display: none;");
+
+
+    /* Por cada elemento de skill, vamos a hacer una fila de edición */
+    for (let x:number=0; x < data.length; x++) {
+        let row = document.createElement("tr");
+        row.className = "table-light";
+
+        row.innerHTML = `
+            <td>${data[x].children[0].innerHTML}</td>
+            <td> <input type="range" min="0" max="66"/> </td>
+            <td class="d-flex justify-content-evenly">
+                <button class="btn btn-primary" data-id="${x}">Save</button>
+                <button class="btn btn-warning" data-id="${x}">Delete</button>
+            </td>`;
+
+        fragment.appendChild(row);
+    }
+    tableBody.appendChild(fragment);
+
+    /* Butón de salvar (Front-End) */
+    document.querySelectorAll("#skillsEditor .btn-primary").forEach(button => {
+        button.addEventListener("mouseup", () => {
+            if(button instanceof HTMLElement) {
+                let value:Number = button.parentElement.previousElementSibling.children[0].value;
+                data[button.dataset["id"]].children[1].setAttribute("style", `width: ${value}%;`);
+            }
+        });
+    });
+    /* Botón de eliminar la fila */
+    document.querySelectorAll("#skillsEditor .btn-warning").forEach(button => {
+        button.addEventListener("mouseup", () => {
+            if(button instanceof HTMLElement) {
+                data[button.dataset["id"]].remove();
+                button.parentElement.parentElement.remove();
+            }
+        });
     });
 }
 

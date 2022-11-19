@@ -45,6 +45,9 @@ function showForm(buttonIn, buttonOut, form) {
                 case "educacion":
                     button.addEventListener("mouseup", function () { editEducation(button); });
                     break;
+                case "habilidades":
+                    button.addEventListener("mouseup", function () { editSkills(button); });
+                    break;
                 default:
                     break;
             }
@@ -201,6 +204,37 @@ function editEducation(origin) {
         originElements[0].innerHTML = textAreas[0].value;
         originElements[1].innerHTML = textAreas[1].value;
         originElements[2].href = textAreas[2].value;
+    });
+}
+function editSkills(origin) {
+    var editor = document.querySelector("#skillsEditor");
+    var data = document.querySelectorAll("#skillsData .progress");
+    var tableBody = document.querySelector("#skillsEditor tbody");
+    var fragment = document.createDocumentFragment();
+    editor.setAttribute("style", "display: block;");
+    origin.setAttribute("style", "display: none;");
+    for (var x = 0; x < data.length; x++) {
+        var row = document.createElement("tr");
+        row.className = "table-light";
+        row.innerHTML = "\n            <td>".concat(data[x].children[0].innerHTML, "</td>\n            <td> <input type=\"range\" min=\"0\" max=\"66\"/> </td>\n            <td class=\"d-flex justify-content-evenly\">\n                <button class=\"btn btn-primary\" data-id=\"").concat(x, "\">Save</button>\n                <button class=\"btn btn-warning\" data-id=\"").concat(x, "\">Delete</button>\n            </td>");
+        fragment.appendChild(row);
+    }
+    tableBody.appendChild(fragment);
+    document.querySelectorAll("#skillsEditor .btn-primary").forEach(function (button) {
+        button.addEventListener("mouseup", function () {
+            if (button instanceof HTMLElement) {
+                var value = button.parentElement.previousElementSibling.children[0].value;
+                data[button.dataset["id"]].children[1].setAttribute("style", "width: ".concat(value, "%;"));
+            }
+        });
+    });
+    document.querySelectorAll("#skillsEditor .btn-warning").forEach(function (button) {
+        button.addEventListener("mouseup", function () {
+            if (button instanceof HTMLElement) {
+                data[button.dataset["id"]].remove();
+                button.parentElement.parentElement.remove();
+            }
+        });
     });
 }
 document.addEventListener("DOMContentLoaded", function () {
