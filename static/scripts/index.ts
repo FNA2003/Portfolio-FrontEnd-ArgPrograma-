@@ -1,72 +1,74 @@
-/*
-
-    Hola, lector de mi código, saludos.
-
-   Al modificar la página solo lo hará en el front-end
-
-   TODO: Tal vez devería dividir el archivo en varios
-
-*/
-
 function main():number {
-    // Botones y el estado de los mismos para el logeo
-    let logIn:Element = document.querySelector("#logIn");
-    let logOut:Element = document.querySelector("#logOut");
+    // Botones para poder "loggearse" en la página
+    const logIn:Element = document.querySelector("#logIn");
+    const logOut:Element = document.querySelector("#logOut");
+    // Formulario que nos deja logearnos
+    const form:Element = document.getElementById("hiddenForm");
 
+    // Naturalmente, para des-logearse hay que estar logeado
+    logOut.setAttribute("style", "display:none;")
+
+    // Para deslogearse, vamos a refrescar la página (No existen las cookies)
     document.querySelector("#logOut").addEventListener("mouseup", () => { location.reload(); });
 
-    // El elemento que permite logearse
-    let form:Element = document.getElementById("hiddenForm");
-
-    // Primero, el superusario se deberá logear cada vez que entra a la página
-    logOut.setAttribute("style", "display:none;")
-    /* Agregamos las funciones para cada botón (logicamente cuando se avance en el curso
-    se logeara realmente) y, modificamos el estado interno del loggeo */
+    // Permitimos la edición
     logIn.addEventListener("mouseup", () => { showForm(logIn, logOut, form) });
-    document.querySelector("#closeForm").addEventListener("mouseup", () => { closeForm(form); })
+    // Y cerrar el formulario
+    document.querySelector("#closeForm").addEventListener("mouseup", () => { 
+        form.setAttribute("style", "display: none;");
+    });
 
     return 0;
 }
 
 function showForm(buttonIn:Element, buttonOut:Element, form:Element):void {
-    /* Por ahora, "showForm" muestra el formulario y cambia el estado
-    de los botones de loggeo 
-    y permite editar la página*/
+    // Mostramos el formulario
     form.setAttribute("style", "display: block;");  
 
+    // Y simulamos que nos logeamos a la vez
     buttonIn.setAttribute("style", "display:none;");
     buttonOut.setAttribute("style", "display:block;");
+    // Permitimos que se modifique el contenido
+    allowEdit();
+}
 
+function allowEdit():void {
     // Todos los botones de edición tienen la misma clase
     document.querySelectorAll(".editButton").forEach(button => {
-        // Y, al "logguearse" se habilitan
+
         button.setAttribute("style", "display:block;");
 
+        // Lo de "instaceof" es una forma en la que TypeScript nos deja manipular un Elemento como otro tipo
         if (button instanceof HTMLElement) {
-            // Para luego darles un evento
+            // Cada botón de edición tiene un data-set que nos da la información de a quien corresponden
             switch(button.dataset.meant){
                 case "about":
-                    button.addEventListener("mouseup", () => {editAbout(button);} );
+                    button.addEventListener("mouseup", () => editAbout.bind(button), false);
                     break;
                 case "experiencia":
-                    button.addEventListener("mouseup", () => {editExperience(button);});
+                    button.addEventListener("mouseup", () => editExperience.bind(button), false);
                     break;
                 case "educacion":
-                    button.addEventListener("mouseup", () => {editEducation(button)});
+                    button.addEventListener("mouseup", () => editEducation.bind(button), false);
                     break;
                 case "habilidades":
-                    button.addEventListener("mouseup", () => {editSkills(button);});
+                    button.addEventListener("mouseup", () => editSkills.bind(button), false);
+                    break;
+                case "proyectos":
+                    button.addEventListener("mouseup", () => editAbilities(button), false);
                     break;
                 default:
+                    console.error("Existe un botón de edición irreconocible");
                     break;
             }
-        }
-        
+        }       
     });
 
+    // Y, todos los botones de borrar, tienen la misma clase
     document.querySelectorAll(".removeButton").forEach(button => {
+
         button.setAttribute("style", "display: block;")
-        
+            // Y, borramos los contenedores (por ahora, desarrollo en Front-End)
             if (button instanceof HTMLElement) {
                 switch(button.dataset.meant) {
                     case "experiencia":
@@ -87,47 +89,44 @@ function showForm(buttonIn:Element, buttonOut:Element, form:Element):void {
     });
 }
 
-function closeForm(form:Element):void {
-    /* Simplemente, esconder el formulario */
-    form.setAttribute("style", "display: none;");
-}
-
 
 function editAbout(origin:Element):void {
-    // Se oculta el boton de editar que abrió el formulario
-    origin.setAttribute("style", "display:none;");
+    // editor donde podremos modificar lo que se muestra en la sección "About"
+    const editForm:Element = document.querySelector("#editAbout");    
 
-    // Se encuentra y habilita el formulario de edición
-    let editForm:Element = document.querySelector("#editAbout");    
-    editForm.setAttribute("style", "display:block");
-
-    // Se encuentra los botones del formulario de edición
-    let closeEditForm:Element = document.querySelector("#aboutClose");
-    let saveEditForm:Element = document.querySelector("#aboutSave");
+    // Botones del formulario
+    const closeEditForm:Element = document.querySelector("#aboutClose");
+    const saveEditForm:Element = document.querySelector("#aboutSave");
 
 
-    // Ahora, vamos a buscar todos los 'orígenes a modificar'
+    // Orígenes modificables de esta sección
     let mainImg:HTMLImageElement = document.querySelector("#about-info img");
     let mainCaption:Element = document.querySelector("#about-info figcaption");
     let mainParagraph:Element = document.querySelector("#about-info p");
     
-    // Y los inputs con lo cual lo vamos a hacer
+    // Inputs con los que damos el nuevo estado para la sección
     let imgSource:HTMLInputElement = document.querySelector("#imageSourceEdit");
     let name:HTMLInputElement = document.querySelector("#portfolioNameEdit");
     let presentation:HTMLInputElement = document.querySelector("#presentacionEdit");
-    // Damos el valor a los inputs correspondientes
+
+
+
+    // Escondemos el botón de editar y mostramos el formulario
+    origin.setAttribute("style", "display:none;");    
+    editForm.setAttribute("style", "display:block");
+
+    // Damos el valor de los orígenes a los inputs (para dar una referencia)
     imgSource.value = mainImg.src;
     name.value = mainCaption.innerHTML;
     presentation.value = mainParagraph.innerHTML; 
 
     
-    // Al botón de cerrar se le da la habilidad de ocultar el form
+    /* Botón de cierre para el formulario */
     closeEditForm.addEventListener("mouseup", () => {
         editForm.setAttribute("style", "display:none");
         origin.setAttribute("style", "display:block;");
     });
-
-    // Y al botón de salvar de modificar el front-end
+    /* Botón para salvar los cambios */
     saveEditForm.addEventListener("mouseup", () => {
         mainImg.src = imgSource.value.trim();;
         mainCaption.innerHTML = name.value.trim();;
@@ -136,17 +135,12 @@ function editAbout(origin:Element):void {
 }
 
 function editExperience(origin:Element):void {
-    // Muestra todas las cartas ocultas(Experiencia)
-    document.querySelectorAll(".card").forEach(card => {
-        card.setAttribute("style", "display: block;")
-    });
-    
-    // Origin es la carta a editar, editor es la carta con los textAreas
+    // Origin es la carta a editar y, editor, es la carta que contiene los elementos a modificar
     origin = origin.parentElement.parentElement.parentElement as HTMLElement;
-    let editor:HTMLElement = document.getElementById("cardEditor");
+    const editor:HTMLElement = document.getElementById("cardEditor");
     
-    // (EXPERIMENTAL) 'yPosition' es la posición original de la carta a editar
-    let yPosition:Number = origin.getBoundingClientRect().top + window.scrollY;
+    // (EXPERIMENTAL) 'yPosition' es la posición original de la carta a editar, se usa para llevar al editor hacia donde estaba el origen
+    const yPosition:Number = origin.getBoundingClientRect().top + window.scrollY;
     
     // Todas los textAreas del editor
     const editAreas:Array<HTMLTextAreaElement> = [
@@ -165,14 +159,19 @@ function editExperience(origin:Element):void {
         origin.querySelector("ul > li:first-child"),
         origin.querySelector("ul > li:nth-child(2)"),
         origin.querySelector("a")
-    ]   
-    
+    ];
 
+    // Muestra todas las cartas ocultas
+    document.querySelectorAll(".card").forEach(card => {
+        card.setAttribute("style", "display: block;")
+    });
+    
+    // Y, escondemos la original para mostrar el editor
     origin.setAttribute("style", "display: none;")
     editor.setAttribute("style", `bottom: ${yPosition}px;`);
 
     
-    // Y, actualizamos los valores del editor con los a valores a editar
+    // Luego, actualizamos los valores del editor con los a valores a editar
     editAreas[0].value = originAreas[0].src;
     editAreas[1].value = originAreas[1].innerHTML;
     editAreas[2].value = originAreas[2].innerHTML
@@ -186,73 +185,76 @@ function editExperience(origin:Element):void {
         origin.setAttribute("style", "display: block;");
         editor.setAttribute("style", "display: none;");
     });
-    /* Boton de salvar cambios (Nuevamente, Front-End) */
+    /* Boton de salvar cambios (acutalmente, Front-End) */
     editor.querySelector("button:last-child").addEventListener("mouseup", () => {
         origin.setAttribute("style", "display: block;");
         editor.setAttribute("style", "display: none;");
 
-        originAreas[0].src = editAreas[0].value;
-        originAreas[1].innerHTML = editAreas[1].value;
-        originAreas[2].innerHTML = editAreas[2].value;
-        originAreas[3].innerHTML = editAreas[3].value;
-        originAreas[4].innerHTML = editAreas[4].value;
-        originAreas[5].href = editAreas[5].value;
+        originAreas[0].src = editAreas[0].value.trim();
+        originAreas[1].innerHTML = editAreas[1].value.trim();
+        originAreas[2].innerHTML = editAreas[2].value.trim();
+        originAreas[3].innerHTML = editAreas[3].value.trim();
+        originAreas[4].innerHTML = editAreas[4].value.trim();
+        originAreas[5].href = editAreas[5].value.trim();
     });
 }
 
 function editEducation(origin:Element):void {
-    // editor es el input que permite modificar un valor, textAreas son los varios inputs
+    // editor, elemento que donde se encuentra los inputs para modificar x elemento. origin es el elemento a modificar
     const editor:Element = document.querySelector("#educationEditor");
+    origin = origin.parentElement.parentElement.parentElement;
+
+    // Inputs donde el usuario puede modificar el origen
     const textAreas:Array<HTMLTextAreaElement> = [
         editor.querySelector("textarea:first-child"),
         editor.querySelector("textarea:nth-child(2)"),
         editor.querySelector("textarea:nth-child(3)")
     ];
-
-    // origin es el elemento a modificar, originElements es la colección de elementos MODIFICABLES
-    origin = origin.parentElement.parentElement.parentElement;
+    // Elementos MODIFICABLES
     const originElements:Array<any> = [
         origin.querySelector("h4"),
         origin.querySelector("span"),
         origin.querySelector("a")
     ];
 
-    // Mostramos todos los títulos (si es que el usuario presiona editar al estar editando)
+
+    // Mostramos todos los títulos. Y, al original lo escondemos
     document.querySelectorAll("#education li").forEach(list => {
-        list.setAttribute("style", "display: block!important;")
+        list.setAttribute("style", "display: block!important;");
     });
-    // Y, al original lo escondemos
-    origin.setAttribute("style", "display: none!important;")
+    origin.setAttribute("style", "display: none!important;");
     
-    // Modificamos los valores por defecto de los inputs por los MODIFICABLES
+    // Inicializamos el valor de los inputs con el elemento que se quiere modificar
     textAreas[0].value = originElements[0].innerHTML;
     textAreas[1].value = originElements[1].innerHTML;
     textAreas[2].value = originElements[2].href;
 
-    /* CLOSE BUTTON */
+
+    /* Botón de cerrar */
     editor.querySelector("button:first-child").addEventListener("mouseup", () => {
         origin.setAttribute("style", "display: block!important;");
         editor.setAttribute("style", "display: none!important;");
     });
-    /* SAVE BUTTON (En el Front-End) */
+    /* Botón de salvar (En el Front-End) */
     editor.querySelector("button:last-child").addEventListener("mouseup", () => {
         origin.setAttribute("style", "display: block!important;");
         editor.setAttribute("style", "display: none!important;");
 
-        originElements[0].innerHTML = textAreas[0].value;
-        originElements[1].innerHTML = textAreas[1].value;
-        originElements[2].href = textAreas[2].value;
+        originElements[0].innerHTML = textAreas[0].value.trim();
+        originElements[1].innerHTML = textAreas[1].value.trim();
+        originElements[2].href = textAreas[2].value.trim();
     });
 }
 
 function editSkills(origin:Element):void {
+    // Array donde se encuentran los datos a editar
+    const data:any = document.querySelectorAll("#skillsData .progress");
     // Tabla donde vamos a encontrar la plantilla editable de las skills
     const editor:Element = document.querySelector("#skillsEditor");
-    // Array donde se encuentran los datos base
-    const data:any = document.querySelectorAll("#skillsData .progress");
     // Cuerpo de la tabla (donde vamos a agregar las filas de edición)
     const tableBody:Element = document.querySelector("#skillsEditor tbody");
     const fragment:DocumentFragment = document.createDocumentFragment();
+
 
     // Escondemos el botón de editar y, mostramos el editor
     editor.setAttribute("style", "display: block;");
@@ -269,7 +271,7 @@ function editSkills(origin:Element):void {
             <td class="col-4"> <input type="range" min="0" max="66"/> </td>
             <td class="col-4 w-100 d-flex justify-content-evenly">
                 <button class="btn btn-primary" data-id="${x}">Save</button>
-                <button class="btn btn-warning" data-id="${x}">Delete</button>
+                <button class="btn btn-danger" data-id="${x}">Delete</button>
             </td>`;
 
         fragment.appendChild(row);
@@ -281,12 +283,12 @@ function editSkills(origin:Element):void {
         button.addEventListener("mouseup", () => {
             if(button instanceof HTMLElement) {
                 let value:any = button.parentElement.previousElementSibling.children[0] as HTMLInputElement;
-                value = value.value;
+                value = value.value.trim();
                 data[button.dataset["id"]].children[1].setAttribute("style", `width: ${value}%;`);
             }
         });
     });
-    /* Botón de eliminar la fila */
+    /* Botón de eliminar la skill */
     document.querySelectorAll("#skillsEditor .btn-warning").forEach(button => {
         button.addEventListener("mouseup", () => {
             if(button instanceof HTMLElement) {
@@ -295,6 +297,81 @@ function editSkills(origin:Element):void {
             }
         });
     });
+}
+
+function editAbilities(origin:Element):void {
+    // editor es el fromulario que permite modificar partes del carousel, SIN BORRAR NADA. Y carousel es la lista de elementos en el carousel
+    const editor:Element = document.querySelector("#proyectsEditor");
+    const carousel:NodeListOf<any> = document.querySelectorAll(".carousel-item");
+
+    const fragment:DocumentFragment = document.createDocumentFragment();
+
+    // Mostramos y escondemos todo lo necesario
+    origin.setAttribute("style", "display: none;");
+    editor.setAttribute("style", "display: block;");
+
+    // Por cada elemento en el carousel
+    for (let i in carousel) {
+        // Intentamos crear un set de edición para el mismo
+        try {
+            let div = document.createElement("div");
+            div.className = "row";
+            div.setAttribute("style", "border-bottom: 1px solid white;");
+
+            // Con los valores de cada item del carousel
+            div.innerHTML = `
+                <div class="col-8">
+                    <textarea placeholder="NOMBRE DEL PROYECTO" style="resize: none; margin: 10px 0; width: 100%;">${carousel[i].children[1].children[0].innerHTML}</textarea>
+                    <textarea placeholder="DESCRIPCIÓN DEL PROYECTO" style="resize: none; margin: 10px 0; width: 100%;">${carousel[i].children[1].children[1].innerHTML}</textarea>
+                    <textarea placeholder="URL DEL PROYECTO" style="resize: none; margin: 10px 0; width: 100%;">${carousel[i].children[0].href}</textarea>
+                    <textarea placeholder="URL DE LA IMÁGEN" style="resize: none; margin: 10px 0; width: 100%;">${carousel[i].children[0].children[0].src}</textarea>
+
+                    <div class="projectsEditorButtons" style="margin-bottom: 5px;">
+                        <button data-id="${i}" class="btn btn-primary w-100">Save</button>
+                    </div>
+                </div>
+                <div class="col-4 d-flex justify-content-center align-items-sm-center">
+                    <h5>${carousel[i].children[1].children[0].innerHTML}</h5>
+                </div>`;
+                
+            fragment.appendChild(div);
+        }
+        catch(error) { }
+        
+    }
+
+
+    // Al final del formulario, damos la posibilidad de cerrar el editor
+    let closeButton = document.createElement("button");
+    closeButton.className = "btn btn-warning w-100 mt-4";
+    closeButton.innerHTML = "Close";
+
+    // Agregamos todo al documento
+    fragment.appendChild(closeButton);
+    editor.appendChild(fragment);
+
+
+
+    /* Botón para cerrar el editor */
+    closeButton.addEventListener("mouseup", () => {
+        editor.setAttribute("style", "display: none;");
+        origin.setAttribute("style", "display: block;");
+        editor.innerHTML = "";
+    });
+    /* Botón para salvar la edición de 'x' elemento del carousel (Front-End) */
+    document.querySelectorAll(".projectsEditorButtons button").forEach(button => {
+        button.addEventListener("mouseup", () => {
+            let index:number;
+            const container:any = button.parentElement.parentElement;
+            if (button instanceof HTMLElement) {
+                index = parseInt(button.dataset["id"]);
+            }
+            carousel[index].children[0].href = container.children[2].trim();
+            carousel[index].children[0].children[0].src = container.children[3].trim();
+            carousel[index].children[1].children[0].innerHTML = container.children[0].trim();
+            carousel[index].children[1].children[1].innerHTML = container.children[1].trim();
+        });
+    });  
 }
 
 document.addEventListener("DOMContentLoaded", () => {
