@@ -207,27 +207,35 @@ function editEducation(origin) {
     });
 }
 function editSkills(origin) {
+    // Tabla donde vamos a encontrar la plantilla editable de las skills
     var editor = document.querySelector("#skillsEditor");
+    // Array donde se encuentran los datos base
     var data = document.querySelectorAll("#skillsData .progress");
+    // Cuerpo de la tabla (donde vamos a agregar las filas de edición)
     var tableBody = document.querySelector("#skillsEditor tbody");
     var fragment = document.createDocumentFragment();
+    // Escondemos el botón de editar y, mostramos el editor
     editor.setAttribute("style", "display: block;");
     origin.setAttribute("style", "display: none;");
+    /* Por cada elemento de skill, vamos a hacer una fila de edición */
     for (var x = 0; x < data.length; x++) {
         var row = document.createElement("tr");
         row.className = "table-light";
-        row.innerHTML = "\n            <td>".concat(data[x].children[0].innerHTML, "</td>\n            <td> <input type=\"range\" min=\"0\" max=\"66\"/> </td>\n            <td class=\"d-flex justify-content-evenly\">\n                <button class=\"btn btn-primary\" data-id=\"").concat(x, "\">Save</button>\n                <button class=\"btn btn-warning\" data-id=\"").concat(x, "\">Delete</button>\n            </td>");
+        row.innerHTML = "\n            <td class=\"col-4\">".concat(data[x].children[0].innerHTML, "</td>\n            <td class=\"col-4\"> <input type=\"range\" min=\"0\" max=\"66\"/> </td>\n            <td class=\"col-4 w-100 d-flex justify-content-evenly\">\n                <button class=\"btn btn-primary\" data-id=\"").concat(x, "\">Save</button>\n                <button class=\"btn btn-warning\" data-id=\"").concat(x, "\">Delete</button>\n            </td>");
         fragment.appendChild(row);
     }
     tableBody.appendChild(fragment);
+    /* Butón de salvar (Front-End) */
     document.querySelectorAll("#skillsEditor .btn-primary").forEach(function (button) {
         button.addEventListener("mouseup", function () {
             if (button instanceof HTMLElement) {
-                var value = button.parentElement.previousElementSibling.children[0].value;
+                var value = button.parentElement.previousElementSibling.children[0];
+                value = value.value;
                 data[button.dataset["id"]].children[1].setAttribute("style", "width: ".concat(value, "%;"));
             }
         });
     });
+    /* Botón de eliminar la fila */
     document.querySelectorAll("#skillsEditor .btn-warning").forEach(function (button) {
         button.addEventListener("mouseup", function () {
             if (button instanceof HTMLElement) {

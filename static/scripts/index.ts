@@ -158,7 +158,7 @@ function editExperience(origin:Element):void {
         editor.querySelector("#cardEditor-url")
     ];
     // Toda la información MODIFICABLE de la carta original
-    const originAreas:Array<HTMLImageElement | HTMLAnchorElement | Element> = [
+    const originAreas:Array<any> = [
         origin.querySelector("img"),
         origin.querySelector("h5"),
         origin.querySelector("p"),
@@ -211,7 +211,7 @@ function editEducation(origin:Element):void {
 
     // origin es el elemento a modificar, originElements es la colección de elementos MODIFICABLES
     origin = origin.parentElement.parentElement.parentElement;
-    const originElements:Array<Element | HTMLAnchorElement> = [
+    const originElements:Array<any> = [
         origin.querySelector("h4"),
         origin.querySelector("span"),
         origin.querySelector("a")
@@ -249,7 +249,7 @@ function editSkills(origin:Element):void {
     // Tabla donde vamos a encontrar la plantilla editable de las skills
     const editor:Element = document.querySelector("#skillsEditor");
     // Array donde se encuentran los datos base
-    const data:NodeList = document.querySelectorAll("#skillsData .progress");
+    const data:any = document.querySelectorAll("#skillsData .progress");
     // Cuerpo de la tabla (donde vamos a agregar las filas de edición)
     const tableBody:Element = document.querySelector("#skillsEditor tbody");
     const fragment:DocumentFragment = document.createDocumentFragment();
@@ -258,16 +258,16 @@ function editSkills(origin:Element):void {
     editor.setAttribute("style", "display: block;");
     origin.setAttribute("style", "display: none;");
 
-
+    
     /* Por cada elemento de skill, vamos a hacer una fila de edición */
     for (let x:number=0; x < data.length; x++) {
         let row = document.createElement("tr");
         row.className = "table-light";
 
         row.innerHTML = `
-            <td>${data[x].children[0].innerHTML}</td>
-            <td> <input type="range" min="0" max="66"/> </td>
-            <td class="d-flex justify-content-evenly">
+            <td class="col-4">${data[x].children[0].innerHTML}</td>
+            <td class="col-4"> <input type="range" min="0" max="66"/> </td>
+            <td class="col-4 w-100 d-flex justify-content-evenly">
                 <button class="btn btn-primary" data-id="${x}">Save</button>
                 <button class="btn btn-warning" data-id="${x}">Delete</button>
             </td>`;
@@ -280,7 +280,8 @@ function editSkills(origin:Element):void {
     document.querySelectorAll("#skillsEditor .btn-primary").forEach(button => {
         button.addEventListener("mouseup", () => {
             if(button instanceof HTMLElement) {
-                let value:Number = button.parentElement.previousElementSibling.children[0].value;
+                let value:any = button.parentElement.previousElementSibling.children[0] as HTMLInputElement;
+                value = value.value;
                 data[button.dataset["id"]].children[1].setAttribute("style", `width: ${value}%;`);
             }
         });

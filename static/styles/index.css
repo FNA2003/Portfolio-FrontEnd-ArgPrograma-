@@ -107,6 +107,9 @@ article {
         margin: 6px 0;
         height: min-content;
     }
+    #skillsEditor thead, #skillsEditor tbody {
+        width: 100%;
+    }
 
 
 #proyects {
