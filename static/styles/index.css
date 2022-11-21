@@ -81,8 +81,8 @@ article {
 
 
 #education {
-    background: var(--secondary-bg-color);
-    color: var(--secondary-fn-color);
+    background: var(--primary-bg-color);
+    color: var(--primary-fn-color);
 }
     #education h3 {
         text-decoration: underline;
@@ -90,11 +90,17 @@ article {
     #education ol {
         padding: 5% 10%;
     }
+    #education li div {
+        width: 100%;
+    }
+    #education li div button {
+        width: 20%;
+    }
 
 
 #skills  {
-    background: var(--primary-bg-color);
-    color: var(--primary-fn-color);
+    background: var(--secondary-bg-color);
+    color: var(--secondary-fn-color);
 
     padding: 1% 2%;
 }
@@ -113,8 +119,8 @@ article {
 
 
 #proyects {
-    background: var(--secondary-bg-color);
-    color: var(--secondary-fn-color);
+    background: var(--primary-bg-color);
+    color: var(--primary-fn-color);
 
     padding-bottom: 40px;
 }
@@ -128,4 +134,7 @@ article {
     #proyects img {
         max-height: 100vh;
         object-fit: contain;
+        width: 80% !important;
+        display: block;
+        margin: auto;
     }

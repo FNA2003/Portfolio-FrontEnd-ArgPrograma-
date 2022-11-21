@@ -34,19 +34,19 @@ function allowEdit() {
             // Cada botón de edición tiene un data-set que nos da la información de a quien corresponden
             switch (button.dataset.meant) {
                 case "about":
-                    button.addEventListener("mouseup", function () { return editAbout.bind(button); }, false);
+                    button.addEventListener("mouseup", function () { editAbout(button); });
                     break;
                 case "experiencia":
-                    button.addEventListener("mouseup", function () { return editExperience.bind(button); }, false);
+                    button.addEventListener("mouseup", function () { editExperience(button); });
                     break;
                 case "educacion":
-                    button.addEventListener("mouseup", function () { return editEducation.bind(button); }, false);
+                    button.addEventListener("mouseup", function () { editEducation(button); });
                     break;
                 case "habilidades":
-                    button.addEventListener("mouseup", function () { return editSkills.bind(button); }, false);
+                    button.addEventListener("mouseup", function () { editSkills(button); });
                     break;
                 case "proyectos":
-                    button.addEventListener("mouseup", function () { return editAbilities(button); }, false);
+                    button.addEventListener("mouseup", function () { editAbilities(button); });
                     break;
                 default:
                     console.error("Existe un botón de edición irreconocible");
@@ -236,7 +236,7 @@ function editSkills(origin) {
         });
     });
     /* Botón de eliminar la skill */
-    document.querySelectorAll("#skillsEditor .btn-warning").forEach(function (button) {
+    document.querySelectorAll("#skillsEditor .btn-danger").forEach(function (button) {
         button.addEventListener("mouseup", function () {
             if (button instanceof HTMLElement) {
                 data[button.dataset["id"]].remove();
@@ -287,10 +287,10 @@ function editAbilities(origin) {
             if (button instanceof HTMLElement) {
                 index = parseInt(button.dataset["id"]);
             }
-            carousel[index].children[0].href = container.children[2].trim();
-            carousel[index].children[0].children[0].src = container.children[3].trim();
-            carousel[index].children[1].children[0].innerHTML = container.children[0].trim();
-            carousel[index].children[1].children[1].innerHTML = container.children[1].trim();
+            carousel[index].children[0].href = container.children[2].value;
+            carousel[index].children[0].children[0].src = container.children[3].value;
+            carousel[index].children[1].children[0].innerHTML = container.children[0].value;
+            carousel[index].children[1].children[1].innerHTML = container.children[1].value;
         });
     });
 }

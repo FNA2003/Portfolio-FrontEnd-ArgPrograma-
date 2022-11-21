@@ -43,19 +43,19 @@ function allowEdit():void {
             // Cada botón de edición tiene un data-set que nos da la información de a quien corresponden
             switch(button.dataset.meant){
                 case "about":
-                    button.addEventListener("mouseup", () => editAbout.bind(button), false);
+                    button.addEventListener("mouseup", () => {editAbout(button);});
                     break;
                 case "experiencia":
-                    button.addEventListener("mouseup", () => editExperience.bind(button), false);
+                    button.addEventListener("mouseup", () => {editExperience(button);});
                     break;
                 case "educacion":
-                    button.addEventListener("mouseup", () => editEducation.bind(button), false);
+                    button.addEventListener("mouseup", () => {editEducation(button);});
                     break;
                 case "habilidades":
-                    button.addEventListener("mouseup", () => editSkills.bind(button), false);
+                    button.addEventListener("mouseup", () => {editSkills(button);});
                     break;
                 case "proyectos":
-                    button.addEventListener("mouseup", () => editAbilities(button), false);
+                    button.addEventListener("mouseup", () => {editAbilities(button);});
                     break;
                 default:
                     console.error("Existe un botón de edición irreconocible");
@@ -217,7 +217,6 @@ function editEducation(origin:Element):void {
         origin.querySelector("a")
     ];
 
-
     // Mostramos todos los títulos. Y, al original lo escondemos
     document.querySelectorAll("#education li").forEach(list => {
         list.setAttribute("style", "display: block!important;");
@@ -277,7 +276,7 @@ function editSkills(origin:Element):void {
         fragment.appendChild(row);
     }
     tableBody.appendChild(fragment);
-
+    
     /* Butón de salvar (Front-End) */
     document.querySelectorAll("#skillsEditor .btn-primary").forEach(button => {
         button.addEventListener("mouseup", () => {
@@ -289,9 +288,9 @@ function editSkills(origin:Element):void {
         });
     });
     /* Botón de eliminar la skill */
-    document.querySelectorAll("#skillsEditor .btn-warning").forEach(button => {
+    document.querySelectorAll("#skillsEditor .btn-danger").forEach(button => {
         button.addEventListener("mouseup", () => {
-            if(button instanceof HTMLElement) {
+            if(button instanceof HTMLElement) {                
                 data[button.dataset["id"]].remove();
                 button.parentElement.parentElement.remove();
             }
@@ -350,7 +349,7 @@ function editAbilities(origin:Element):void {
     fragment.appendChild(closeButton);
     editor.appendChild(fragment);
 
-
+    
 
     /* Botón para cerrar el editor */
     closeButton.addEventListener("mouseup", () => {
@@ -366,10 +365,11 @@ function editAbilities(origin:Element):void {
             if (button instanceof HTMLElement) {
                 index = parseInt(button.dataset["id"]);
             }
-            carousel[index].children[0].href = container.children[2].trim();
-            carousel[index].children[0].children[0].src = container.children[3].trim();
-            carousel[index].children[1].children[0].innerHTML = container.children[0].trim();
-            carousel[index].children[1].children[1].innerHTML = container.children[1].trim();
+                   
+            carousel[index].children[0].href = container.children[2].value;
+            carousel[index].children[0].children[0].src = container.children[3].value;
+            carousel[index].children[1].children[0].innerHTML = container.children[0].value;
+            carousel[index].children[1].children[1].innerHTML = container.children[1].value;
         });
     });  
 }
