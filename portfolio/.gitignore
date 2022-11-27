@@ -19,6 +19,8 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
+.editorconfig
+.vscode
 
 # Visual Studio Code
 .vscode/*
@@ -36,6 +38,8 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
+
+/oldVersion
 
 # System files
 .DS_Store
