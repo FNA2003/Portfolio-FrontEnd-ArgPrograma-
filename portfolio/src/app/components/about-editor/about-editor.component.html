@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-3">
+        <textarea 
+            placeholder="IMAGE URL" 
+            [(ngModel)]="imgURL">
+        </textarea>
+        <textarea 
+            placeholder="NOMBRE" 
+            [(ngModel)]="name">
+        </textarea>
+    </div>
+    <div class="col-7">
+        <textarea 
+            placeholder="PRESENTACIÓN PERSONAL" 
+            id="presentation"
+            [(ngModel)]="text">
+        </textarea>
+    </div>
+    <div class="col-2 d-flex justify-content-evenly flex-column">
+        <button type="button" class="btn btn-warning" (click)="closeForm()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="saveForm()">Save</button>
+    </div>
+</div>

@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
 import { faSignIn, faSignOut } from '@fortawesome/free-solid-svg-icons';
 import { CallDBService } from 'src/app/services/call-db.service';
 
-import { SocialMedia } from './Interface/SocialInterface';
+import { SocialMedia } from 'src/app/interfaces/SocialInterface';
+
+import { LoggInService } from 'src/app/services/logg-in.service';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +21,10 @@ export class HeaderComponent {
   logInIcon = faSignIn;
 
 
-  constructor(private service:CallDBService) {  }
+  constructor(
+    private service:CallDBService, 
+    private logIn:LoggInService
+  ) {  }
 
   ngOnInit() {
     this.service.getDataBase().subscribe(values => {
@@ -27,7 +32,8 @@ export class HeaderComponent {
     });
   }
 
-  toggleLogIn() {
+  signInUser() {
+    this.logIn.toggleSesion();
     this.loggedIn = !this.loggedIn;
   }
 }

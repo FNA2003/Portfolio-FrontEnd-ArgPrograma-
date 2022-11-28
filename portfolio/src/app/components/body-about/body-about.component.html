@@ -1,0 +1,26 @@
+<article class="secondary container-fluid ">
+    
+    <div class="row">
+        <div class="col-3">
+            <figure class="text-center">
+                <img src="{{ about?.imgURL }}" class="rounded img-thumbnail" alt="{{ about?.name }} image" />
+                <figure>{{ about?.name }}</figure>
+            </figure>
+        </div>
+        <div class="col-8">
+            <h3>{{ sectionTitle }}</h3>
+            <p>{{ about?.text }}</p>
+        </div>
+        <div class="col" (click)="toggleEditable()" *ngIf="isIn">
+            <button class="btn btn-success editButton">
+                <fa-icon [icon]="pen"></fa-icon>
+            </button>
+        </div>
+    </div>
+
+    <app-about-editor
+    [informacion]="about"
+    *ngIf="editable"
+    (emiter)="toggleEditable()"></app-about-editor>
+
+</article>

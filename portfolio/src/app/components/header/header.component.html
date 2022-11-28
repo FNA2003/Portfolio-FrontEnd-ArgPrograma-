@@ -3,7 +3,7 @@
         <button 
             class="btn btn-outline-success"
             [ngClass]="{ hidden: loggedIn }"
-            (click)="toggleLogIn()">
+            (click)="signInUser()">
 
             <span>Log in </span>
             <fa-icon [icon]="logInIcon"></fa-icon>
@@ -12,7 +12,7 @@
         <button 
             class="btn btn-outline-secondary"
             [ngClass]="{hidden: !loggedIn}"
-            (click)="toggleLogIn()">
+            (click)="signInUser()">
 
             <span>Log out </span>
             <fa-icon [icon]="logOutIcon"></fa-icon>

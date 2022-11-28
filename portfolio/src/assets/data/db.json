@@ -1,20 +1,55 @@
 {
     "social_media": [
-        {
-            "name":"Twitter",
-            "link":"https://twitter.com/FranAn91947409"
-        },
-        {
-            "name":"Discord",
-            "link":"https://discord.gg/RYy9PFuaCh"
-        },
-        {
-            "name":"Instagram",
-            "link":"https://www.instagram.com/frannangele/"
-        },
-        {
-            "name":"GitHub",
-            "link":"https://github.com/FNA2003"
-        }
+      {
+        "name":"Twitter",
+        "link":"https://twitter.com/FranAn91947409"
+      },
+      {
+        "name":"Discord",
+        "link":"https://discord.gg/RYy9PFuaCh"
+      },
+      {
+        "name":"Instagram",
+        "link":"https://www.instagram.com/frannangele/"
+      },
+      {
+        "name":"GitHub",
+        "link":"https://github.com/FNA2003"
+      }
+    ],
+    "about": {
+      "text": " Estudiante de la Escuela Secundaria Técnica N°4 (con orientación electro-mecánica), actualmente, cursando el último año de la carrera. Al concluir con mi formación secundaria, pienso seguir estudiando una carrera de grado (Ing. en Sistemas) y, si me es posible, trabajar a la vez.\n Mis hobbies son; la tornería (en mi taller personal), ir al gimnasio y la programación (desde full-stack hasta programador de micro-controladores).",
+      "name": "Franco Angeletti",
+      "imgURL": "https://tinyurl.com/323n4bd9"
+    },
+    "education": [
+      {
+        "origin": "Secundaria Técnica N°4 (Zárate)",
+        "title": "Técnico Electro-mecánico",
+        "date": "2016 - presente"
+      },
+      {
+        "origin": "Argentina Programa (#Se Programar)",
+        "title": "Programador minnor",
+        "date": "2021 - 2022"
+      },
+      {
+        "origin": "HarvardX Course (CS50's Web Programming Course)",
+        "title": "Web programmer with python an java-script",
+        "date": "2021 - 2021"
+      },
+      {
+        "origin": "HardvardX Course (CS50's Web Programming Course)",
+        "title": "Computer science programmer",
+        "date": "2020 - 2021"
+      }
+    ],
+    "skills" : [
+      { "skill_name": "Cooperador", "percentage": 40, "boostrap":"success"},
+      { "skill_name": "Pro-activo", "percentage": 80, "boostrap":"warning"},
+      { "skill_name": "Comprometido", "percentage": 100, "boostrap":"primary" },
+      { "skill_name": "Iniciador", "percentage": 25, "boostrap":"danger" },
+      { "skill_name": "Predispuesto", "percentage": 75, "boostrap":"info" },
+      { "skill_name": "Responsable", "percentage": 100, "boostrap":"secondary" }
     ]
-}
+  }

@@ -1,0 +1,33 @@
+
+<form 
+    class="bg-light fixed-top"
+    [ngClass]="{'hidden': !showForm}">
+
+    <!-- Texto y botón de cerrar -->
+    <div class="mb-3 text-end">
+        <button (click)="closeForm()" type="button" class="btn-close"></button>
+    </div>
+    <div class="mb-3 text-center">
+        <h2 class="h2"> Logg in </h2>
+        <span> Con fin de mostrar solo el front-end, al cerrar esta ventana usted se "loggeara" </span>
+    </div>
+
+    <!-- Mensaje de error -->
+    <div class="alert alert-danger" role="alert" *ngIf="invalid">
+        Error al acceder a una cuenta maestra, esto será notificado.
+    </div>
+
+
+    <!-- Inputs -->
+    <div class="form-control "> 
+        <label for="inputUsername" class="form-label">Username</label>
+        <input [(ngModel)]="user" type="text" class="form-control" name="usuario" required />
+    </div>
+    <div class="form-control "> 
+        <label for="inputPassword" class="form-label">Password</label>
+        <input [(ngModel)]="pass" type="password" class="form-control" name="password" required />
+    </div>
+    <div class="mb-3 text-center d-grid"> 
+        <button (click)="submit()" type="submit" class="btn btn-success">Entrar</button>   
+    </div>
+</form>

@@ -1,11 +1,3 @@
-:root {
-    --primary-bg-color: #2f383d;
-    --primary-fn-color: #fffe;
-
-    --secondary-bg-color: #000c14ef;
-    --secondary-fn-color: #fffa;
-}
-
 * {
     margin: 0;
     padding: 0;

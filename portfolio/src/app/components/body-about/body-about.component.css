@@ -1,0 +1,30 @@
+.secondary {
+    background: #000c14ef;
+    color: #fffa;
+
+    padding: 15px 0;
+}
+
+.btn {
+    width: 100%;
+    height: 100%;
+}
+
+img {
+    max-height: 250px;
+    min-width: 120px;
+}
+
+figcaption {
+    text-decoration: underline;
+    font-style: italic;
+}
+
+p {
+    max-width: 850px;
+    white-space: pre-wrap;
+}
+
+h3 {
+    text-shadow: 0 0 20px whitesmoke;
+}
