@@ -1,0 +1,11 @@
+textarea {
+    resize: none; 
+    margin: 10px 0; 
+    width: 100%;
+}
+
+.projectsEditorButtons {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 5px;
+}

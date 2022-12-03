@@ -1,0 +1,68 @@
+<article>
+    <!-- Title -->
+    <h3 class="h3 text-end">{{ title }}</h3>
+
+    <!-- Carousel de los proyectos (boostrap) -->
+    <div id="projectCarousel" class="carousel carousel-light slide" data-bs-ride="false">
+        <div class="carousel-indicators">
+            <button
+                *ngFor="let x of numberArray"
+                type="button" data-bs-target="#projectCarousel" 
+                [attr.data-bs-slide-to]="x"
+                [ngClass]="{ 'active': x === 0 }"
+                [attr.aria-current]="{ 'true': x === 0 }"
+                [attr.aria-label]="'Slide' + x">
+            </button>
+        </div>
+        <div class="carousel-inner">
+
+            <div *ngFor="let x of information"
+                [ngClass]="{'active': x.id === 0  }"
+                class="carousel-item">
+
+                <a href="{{ x.anchorURL }}" target="_blank">
+                    <img src="{{ x.imgURL }}" alt="{{ x.altText }}" class="d-block w-100" />
+                </a>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>{{ x.title }}</h5>
+                    <p>{{ x.paragraph }}</p>
+                </div>
+
+            </div>
+
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>        
+        </button>
+    </div>
+
+
+    <!-- Botón para editar -->
+    <div class="text-center" *ngIf="isIn">
+        <button class="btn btn-success" 
+            style="margin: 2.5% 0; width: 40%;"
+            (click)="editButton()">
+            
+            <fa-icon [icon]="edit"></fa-icon>
+        </button>
+    </div>
+
+    <!-- Orígen de los formularios para los proyectos -->
+    <div *ngIf="isIn">
+        <div class="container-md" *ngIf="showForm">
+
+                <app-proyects-item class="row" 
+                    *ngFor="let x of information"
+                    [item]="x"
+                    (deleteEvent)="deleteBase($event)"
+                    (saveEvent)="saveBase($event)">
+                </app-proyects-item>
+        </div>
+    </div>
+
+</article>

@@ -1,16 +1,19 @@
 <article class="secondary container-fluid ">
-    
+    <!-- Toda la información principal -->
     <div class="row">
+        <!-- Imágen del usuario -->
         <div class="col-3">
             <figure class="text-center">
-                <img src="{{ about?.imgURL }}" class="rounded img-thumbnail" alt="{{ about?.name }} image" />
-                <figure>{{ about?.name }}</figure>
+                <img src="{{ about.imgURL }}" class="rounded img-thumbnail" alt="{{ about.name }} image" />
+                <figure>{{ about.name }}</figure>
             </figure>
         </div>
+        <!-- Texto del 'about' -->
         <div class="col-8">
             <h3>{{ sectionTitle }}</h3>
-            <p>{{ about?.text }}</p>
+            <p>{{ about.text }}</p>
         </div>
+        <!-- Botón para esconder o mostrar el formulario -->
         <div class="col" (click)="toggleEditable()" *ngIf="isIn">
             <button class="btn btn-success editButton">
                 <fa-icon [icon]="pen"></fa-icon>
@@ -18,9 +21,16 @@
         </div>
     </div>
 
-    <app-about-editor
-    [informacion]="about"
-    *ngIf="editable"
-    (emiter)="toggleEditable()"></app-about-editor>
+
+    <!-- Editor|Formulario para modificar la información del 'about' -->
+    <div *ngIf="isIn">
+        <app-about-editor
+            [informacion]="about"
+            *ngIf="editable"
+            (formToggle)="toggleEditable()"
+            (baseToggle)="updateView($event)">
+        </app-about-editor>    
+    </div>
+    
 
 </article>

@@ -1,0 +1,14 @@
+<article>
+    <!-- Nombre del artículo -->
+    <h3 class="h3 text-center">{{ article_name }}</h3>
+
+    <!-- Grupo donde estará la lista de 'education' -->
+    <ol class="list-group list-group-numbered">
+        <app-education-item 
+            *ngFor="let curso of information"
+            [curso]="curso"
+            (editar)="editCourse($event)"
+            (borrar)="deleteCourse($event)">
+        </app-education-item>
+    </ol>
+</article>

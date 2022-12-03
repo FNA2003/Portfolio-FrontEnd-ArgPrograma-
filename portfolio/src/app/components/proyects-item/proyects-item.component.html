@@ -1,0 +1,25 @@
+<div class="col-8">
+    <!-- Inputs con el doble bind para modificar x proyecto -->
+    <textarea placeholder="NOMBRE DEL PROYECTO" 
+        [(ngModel)]="item.title">
+    </textarea>
+    <textarea placeholder="DESCRIPCIÓN DEL PROYECTO" 
+        [(ngModel)]="item.paragraph">
+    </textarea>
+    <textarea placeholder="URL DEL PROYECTO" 
+        [(ngModel)]="item.anchorURL">
+    </textarea>
+    <textarea placeholder="URL DE LA IMÁGEN" 
+        [(ngModel)]="item.imgURL">
+    </textarea>
+
+    <!-- Botones para cambiar el estado de los proyectos -->
+    <div class="projectsEditorButtons">
+        <button class="btn btn-success" (click)="saveButton()">Save</button>
+        <button class="btn btn-danger" (click)="deleteButton()">Delete</button>
+    </div>
+</div>
+<!-- Título del proyecto -->
+<div class="col-4 d-flex justify-content-center align-items-sm-center">
+    <h5>{{ item.title }}</h5>
+</div>

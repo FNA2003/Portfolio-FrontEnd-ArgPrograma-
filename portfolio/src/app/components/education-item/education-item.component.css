@@ -1,0 +1,14 @@
+div:first-child { width: 100%; }
+
+h3 { text-decoration: underline; }
+
+span, a { display: block; }
+
+button { width: 20%; }
+
+textarea {
+    resize:none; 
+    width: 100%; 
+    height: 3rem; 
+    margin: 4px 0;
+}

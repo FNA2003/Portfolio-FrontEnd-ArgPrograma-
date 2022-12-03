@@ -1,0 +1,20 @@
+article  {
+    background: #000c14ef;
+    color: #fffa;
+
+    padding: 1% 2%;
+}
+
+    article > div:last-child { padding: 4% 0; }
+
+    .skill-row {
+        border: 2px solid #fffa;
+        border-radius: 4px;
+
+        margin: 7px 0;
+        padding: 3px;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }

@@ -1,23 +1,33 @@
+<!-- El editor esta dentro de un boostrap-grid  -->
+
 <div class="row">
+
+    <!-- Inputs para modificar el nombre, y la imágen del usuario -->
     <div class="col-3">
         <textarea 
             placeholder="IMAGE URL" 
-            [(ngModel)]="imgURL">
+            [(ngModel)]="informacion.imgURL">
         </textarea>
         <textarea 
             placeholder="NOMBRE" 
-            [(ngModel)]="name">
+            [(ngModel)]="informacion.name">
         </textarea>
     </div>
+    <!-- Input para modificar la presentación del usuario -->
     <div class="col-7">
         <textarea 
             placeholder="PRESENTACIÓN PERSONAL" 
             id="presentation"
-            [(ngModel)]="text">
+            [(ngModel)]="informacion.text">
         </textarea>
     </div>
+
+    <!-- Y, el botón de salvar -->
     <div class="col-2 d-flex justify-content-evenly flex-column">
-        <button type="button" class="btn btn-warning" (click)="closeForm()">Close</button>
-        <button type="button" class="btn btn-primary" (click)="saveForm()">Save</button>
+        <button type="button" 
+            class="btn btn-primary" 
+            (click)="saveForm()">
+            Save
+        </button>
     </div>
 </div>

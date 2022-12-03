@@ -1,11 +1,13 @@
 
-<form 
-    class="bg-light fixed-top"
-    [ngClass]="{'hidden': !showForm}">
+<form class="bg-light fixed-top"
+    [ngStyle]="!showForm? {'display':'none'} : {}">
 
     <!-- Texto y botón de cerrar -->
     <div class="mb-3 text-end">
-        <button (click)="closeForm()" type="button" class="btn-close"></button>
+        <button (click)="closeForm()" 
+            type="button" 
+            class="btn-close">
+        </button>
     </div>
     <div class="mb-3 text-center">
         <h2 class="h2"> Logg in </h2>
@@ -21,13 +23,25 @@
     <!-- Inputs -->
     <div class="form-control "> 
         <label for="inputUsername" class="form-label">Username</label>
-        <input [(ngModel)]="user" type="text" class="form-control" name="usuario" required />
+        <input [(ngModel)]="user" 
+            type="text" 
+            class="form-control" 
+            name="usuario" 
+            required />
     </div>
     <div class="form-control "> 
         <label for="inputPassword" class="form-label">Password</label>
-        <input [(ngModel)]="pass" type="password" class="form-control" name="password" required />
+        <input [(ngModel)]="pass" 
+            type="password" 
+            class="form-control" 
+            name="password" 
+            required />
     </div>
     <div class="mb-3 text-center d-grid"> 
-        <button (click)="submit()" type="submit" class="btn btn-success">Entrar</button>   
+        <button (click)="submit()" 
+            type="submit" 
+            class="btn btn-success">
+            Entrar
+        </button>   
     </div>
 </form>

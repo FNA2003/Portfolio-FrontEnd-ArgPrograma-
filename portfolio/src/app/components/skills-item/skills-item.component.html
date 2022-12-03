@@ -1,0 +1,23 @@
+<!-- Fila de la table con input -->
+<tr class="row">
+    <!-- Información de la habilidad y, del input -->
+    <td class="col-4">{{ skill.skill_name }}</td>
+    <div class="col-4">
+        <input type="number" 
+            max="100" 
+            min="0" 
+            [(ngModel)]="skill.percentage" />
+    </div>
+    
+    <!-- Botones que nos permiten salvar o borrar un elemento -->
+    <div class="col-4 d-flex justify-content-evenly">
+        <button class="btn btn-danger"
+            (click)="removeButton()">
+            <fa-icon [icon]="rm"></fa-icon>
+        </button>
+        <button class="btn btn-success"
+            (click)="saveButton()">
+            <fa-icon [icon]="save"></fa-icon>
+        </button>
+    </div>
+</tr>

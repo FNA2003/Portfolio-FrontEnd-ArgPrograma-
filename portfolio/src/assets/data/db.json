@@ -1,55 +1,127 @@
 {
-    "social_media": [
-      {
-        "name":"Twitter",
-        "link":"https://twitter.com/FranAn91947409"
-      },
-      {
-        "name":"Discord",
-        "link":"https://discord.gg/RYy9PFuaCh"
-      },
-      {
-        "name":"Instagram",
-        "link":"https://www.instagram.com/frannangele/"
-      },
-      {
-        "name":"GitHub",
-        "link":"https://github.com/FNA2003"
-      }
-    ],
-    "about": {
-      "text": " Estudiante de la Escuela Secundaria Técnica N°4 (con orientación electro-mecánica), actualmente, cursando el último año de la carrera. Al concluir con mi formación secundaria, pienso seguir estudiando una carrera de grado (Ing. en Sistemas) y, si me es posible, trabajar a la vez.\n Mis hobbies son; la tornería (en mi taller personal), ir al gimnasio y la programación (desde full-stack hasta programador de micro-controladores).",
-      "name": "Franco Angeletti",
-      "imgURL": "https://tinyurl.com/323n4bd9"
+  "social_media": [
+    {
+      "name": "Twitter",
+      "link": "https://twitter.com/FranAn91947409"
     },
-    "education": [
-      {
-        "origin": "Secundaria Técnica N°4 (Zárate)",
-        "title": "Técnico Electro-mecánico",
-        "date": "2016 - presente"
-      },
-      {
-        "origin": "Argentina Programa (#Se Programar)",
-        "title": "Programador minnor",
-        "date": "2021 - 2022"
-      },
-      {
-        "origin": "HarvardX Course (CS50's Web Programming Course)",
-        "title": "Web programmer with python an java-script",
-        "date": "2021 - 2021"
-      },
-      {
-        "origin": "HardvardX Course (CS50's Web Programming Course)",
-        "title": "Computer science programmer",
-        "date": "2020 - 2021"
-      }
-    ],
-    "skills" : [
-      { "skill_name": "Cooperador", "percentage": 40, "boostrap":"success"},
-      { "skill_name": "Pro-activo", "percentage": 80, "boostrap":"warning"},
-      { "skill_name": "Comprometido", "percentage": 100, "boostrap":"primary" },
-      { "skill_name": "Iniciador", "percentage": 25, "boostrap":"danger" },
-      { "skill_name": "Predispuesto", "percentage": 75, "boostrap":"info" },
-      { "skill_name": "Responsable", "percentage": 100, "boostrap":"secondary" }
-    ]
-  }
+    {
+      "name": "Discord",
+      "link": "https://discord.gg/RYy9PFuaCh"
+    },
+    {
+      "name": "Instagram",
+      "link": "https://www.instagram.com/frannangele/"
+    },
+    {
+      "name": "GitHub",
+      "link": "https://github.com/FNA2003"
+    }
+  ],
+  "about": {
+    "text": " Estudiante de la Escuela Secundaria Técnica N°4 (con orientación electro-mecánica), actualmente, cursando el último año de la carrera. Al concluir con mi formación secundaria, pienso seguir estudiando una carrera de grado (Ing. en Sistemas) y, si me es posible, trabajar a la vez.\n Mis hobbies son; la tornería (en mi taller personal), ir al gimnasio y la programación (desde full-stack hasta programador de micro-controladores).",
+    "name": "Franco Angeletti",
+    "imgURL": "https://i.ibb.co/2nR319g/franco.jpg"
+  },
+  "education": [
+    {
+      "id": 0,
+      "origin": "Secundaria Técnica N°4 (Zárate)",
+      "title": "Técnico Electro-mecánico",
+      "date": "2016 - presente",
+      "prove": ""
+    },
+    {
+      "id": 1,
+      "origin": "Argentina Programa (#Se Programar)",
+      "title": "Programador minnor",
+      "date": "2021 - 2022",
+      "prove": "https://drive.google.com/file/d/1dclSk9aaelPNq2Jeb8dTNwsKKEjRK_He/view?usp=share_link"
+    },
+    {
+      "id": 2,
+      "origin": "HarvardX Course (CS50's Web Programming Course)",
+      "title": "Web programmer with python an java-script",
+      "date": "2021 - 2021",
+      "prove": "https://courses.edx.org/certificates/34003022674d41428a821bcc0bfe2ee7"
+    },
+    {
+      "id": 3,
+      "origin": "HardvardX Course (CS50's Web Programming Course)",
+      "title": "Computer science programmer",
+      "date": "2020 - 2021",
+      "prove": "https://courses.edx.org/certificates/af93016df87c43558449947b8f8579df"
+    }
+  ],
+  "skills": [
+    {
+      "id": 0,
+      "skill_name": "Cooperador",
+      "percentage": 50,
+      "boostrap": "success"
+    },
+    {
+      "id": 1,
+      "skill_name": "Pro-activo",
+      "percentage": 80,
+      "boostrap": "warning"
+    },
+    {
+      "id": 2,
+      "skill_name": "Comprometido",
+      "percentage": 100,
+      "boostrap": "primary"
+    },
+    {
+      "id": 3,
+      "skill_name": "Iniciador",
+      "percentage": 25,
+      "boostrap": "danger"
+    },
+    {
+      "id": 4,
+      "skill_name": "Predispuesto",
+      "percentage": 75,
+      "boostrap": "info"
+    },
+    {
+      "id": 5,
+      "skill_name": "Responsable",
+      "percentage": 100,
+      "boostrap": "secondary"
+    }
+  ],
+  "proyects": [
+    {
+      "id": 0,
+      "imgURL": "https://i.ibb.co/JBCNQj7/documentation.png",
+      "anchorURL": "https://codepen.io/P4nuch0/full/wvrLKVE",
+      "title": "Documentación",
+      "paragraph": "Una página minimalista de la documentación de JavaScript",
+      "altText": "My js Documentation page"
+    },
+    {
+      "id": 2,
+      "imgURL": "https://i.ibb.co/XZFFBzd/portfolio.png",
+      "anchorURL": "https://codepen.io/P4nuch0/full/wvrLbZz",
+      "title": "Portfolio",
+      "paragraph": "Una primera versión de un portfolio",
+      "altText": "My Portfolio page"
+    },
+    {
+      "id": 3,
+      "imgURL": "https://i.ibb.co/mvQdQsT/tribute.png",
+      "anchorURL": "https://codepen.io/P4nuch0/full/KKXEBaj",
+      "title": "Tributo",
+      "paragraph": "Una página donde podemos explorar información del salvador de las Américas, Jose de San Martin",
+      "altText": "My infography page"
+    },
+    {
+      "id": 4,
+      "imgURL": "https://i.ibb.co/LgrQ54w/e-commerce.png",
+      "anchorURL": "https://codepen.io/P4nuch0/full/poWmPJP",
+      "title": "E-commerce",
+      "paragraph": "Una página estática donde podremos ver el template de e-commerce",
+      "altText": "My e-commerce page"
+    }
+  ]
+}

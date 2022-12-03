@@ -3,6 +3,7 @@
     color: #fffa;
 
     padding: 15px 0;
+    overflow-x: hidden;
 }
 
 .btn {
@@ -25,6 +26,4 @@ p {
     white-space: pre-wrap;
 }
 
-h3 {
-    text-shadow: 0 0 20px whitesmoke;
-}
+h3 { text-shadow: 0 0 20px whitesmoke; }

@@ -1,0 +1,62 @@
+<!-- Elemento que muestra la información del elemento actual de educación -->
+<li class="list-group-item d-flex justify-content-between align-items-start"
+    *ngIf="!showForm || !state; else elseblock">
+
+    <div class="ms-2 me-auto">
+        <!-- Información del título -->
+        <h4 class="h4">{{ curso.origin }}</h4>
+        <span>Título: {{ curso.title }}</span>
+        <span> <time>{{ curso.date }}</time> </span>
+
+        <!-- Si no se tiene el url del comprobante se considera que el título está en curso -->
+        <span *ngIf="!curso.prove; else elseBlock">
+            En curso...
+        </span>
+        <ng-template #elseBlock >
+            <a href="{{ curso.prove }}" target="_blank">Comprobante del título</a>
+        </ng-template>
+
+        <!-- Botones de edición para el usuario si esta loggeado -->
+        <div class="d-flex justify-content-evenly" *ngIf="state">
+            <button class="btn btn-success" (click)="editButton()">
+                <fa-icon [icon]="edit"></fa-icon>
+            </button>
+            <button class="btn btn-danger" (click)="removeButton()">
+                <fa-icon [icon]="remove"></fa-icon>
+            </button>
+        </div>
+    </div>
+
+</li>
+
+<!-- Si el usuario toco el botón de editar y no esta loggeado mostramos el formulario -->
+<ng-template #elseblock>
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+
+        <div class="ms-2 me-auto">
+
+            <textarea placeholder="Institución que le dió el título" 
+                class="d-block" 
+                [(ngModel)]="curso.origin">
+            </textarea>
+            <textarea placeholder="Nombre del título" 
+                class="d-block" 
+                [(ngModel)]="curso.title">
+            </textarea>
+            <textarea placeholder="Duración de la cursada" 
+                class="d-block" 
+                [(ngModel)]="curso.date">
+            </textarea>
+            <textarea placeholder="Url del comprobante del título" 
+                class="d-block" 
+                [(ngModel)]="curso.prove">
+            </textarea>
+
+            <div class="d-flex justify-content-evenly">
+                <button class="btn btn-primary" (click)="saveButton()">Save</button>
+                <button class="btn btn-warning" (click)="closeButton()">Close</button>
+            </div>
+        </div>
+
+    </li>
+</ng-template>

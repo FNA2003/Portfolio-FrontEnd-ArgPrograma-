@@ -1,0 +1,54 @@
+<article>
+    <h3 class="h3">{{ title }}</h3>
+
+    <!-- Edit Button -->
+    <div 
+        class="d-flex justify-content-end"
+        *ngIf="editable">
+
+        <button class="btn btn-success" (click)="editButton()">
+            <fa-icon [icon]="edit"></fa-icon>
+        </button>
+    </div>
+
+    <!-- Information -->
+    <div class="container-fluid">
+        <div class="container-sm">
+            <div class="row skill-row"
+                *ngFor="let skill of information">
+
+                <h5 class="h5 col-4">{{ skill.skill_name }}</h5>
+                <div class="col-8 progress">
+                    <div class="progress-bar progress-bar-striped bg-{{ skill.boostrap }}" 
+                        role="progressbar" [ngStyle]="{'width.%': skill.percentage}" 
+                        aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+                    </div>
+                </div>
+
+            </div> 
+        </div>
+    </div>
+
+    <!-- Forms -->
+    <div *ngIf="editable">
+        <div class="justify-content-center" *ngIf="showForm">
+            <div class="container-md">
+    
+                <div class="table table-dark">
+                    <div class="row">
+                        <span class="col-4">Habilidad</span>
+                        <span class="col-4">Porcentaje</span>
+                        <span class="col-4">Acción</span>
+                    </div>
+                    <app-skills-item
+                        *ngFor="let skill of information"
+                        [skill]="skill"
+                        (removeEvent)="removeBase($event)"
+                        (saveEvent)="saveBase($event)">
+                    </app-skills-item>
+                </div>
+                
+            </div>
+        </div>
+    </div>    
+</article>

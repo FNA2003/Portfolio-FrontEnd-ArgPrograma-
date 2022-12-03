@@ -1,0 +1,23 @@
+article {
+    background: #2f383d;
+    color: #fffe;
+
+    padding-bottom: 40px;
+}
+
+    article h3 { padding: 1% 10%; }
+
+    article .carousel-caption { text-shadow: 0 0 8px black; }
+
+    article img {
+        max-height: 100vh;
+        object-fit: contain;
+        width: 80% !important;
+        display: block;
+        margin: auto;
+    }
+
+    #formContainer { display: block; }
+
+
+    app-proyects-item { border-bottom: 1px solid white; }
